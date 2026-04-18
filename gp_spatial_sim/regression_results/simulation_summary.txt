@@ -1,0 +1,58 @@
+
+Simulation parameters
+  task=regression, seed=42
+  n_train=500, n_test=500
+  GP: σ²=1.0, ρ=0.1
+  log-normal noise: noise_std=0.5
+  F calibration: C1=2.969544, C2=0.282948
+
+══════════════════════════════════════════════════
+  TRAIN  (n=500)
+──────────────────────────────────────────────────
+  F_effect   mean  : -0.0068
+  F_effect   std   : 1.0018
+  spatial    mean  : 0.0323
+  spatial    std   : 1.0172
+  m          mean  : 0.0255
+  m          std   : 1.4208
+  y (log-normal) mean   : 3.0834
+  y (log-normal) median : 1.1798
+  log(y)         mean   : 0.0519
+  log(y)         std    : 1.4621
+══════════════════════════════════════════════════
+══════════════════════════════════════════════════
+  TEST — interpolation  (n=500)
+──────────────────────────────────────────────────
+  F_effect   mean  : 0.0690
+  F_effect   std   : 1.0314
+  spatial    mean  : 0.1340
+  spatial    std   : 1.0206
+  m          mean  : 0.2030
+  m          std   : 1.4990
+  y (log-normal) mean   : 9.9944
+  y (log-normal) median : 1.1712
+  log(y)         mean   : 0.1890
+  log(y)         std    : 1.5954
+══════════════════════════════════════════════════
+══════════════════════════════════════════════════
+  TEST — extrapolation  (n=500)
+──────────────────────────────────────────────────
+  F_effect   mean  : 0.0461
+  F_effect   std   : 1.0375
+  spatial    mean  : 0.1908
+  spatial    std   : 0.9488
+  m          mean  : 0.2369
+  m          std   : 1.3506
+  y (log-normal) mean   : 5.2775
+  y (log-normal) median : 1.2608
+  log(y)         mean   : 0.2575
+  log(y)         std    : 1.4458
+══════════════════════════════════════════════════
+
+Column descriptions
+  s1, s2         : spatial coordinates
+  x1 … x9       : covariates (x1–x3 active, x4–x9 noise)
+  F_effect       : scaled covariate function, Var ≈ 1
+  spatial_effect : GP realisation b(s), Var ≈ 1
+  m              : F_effect + spatial_effect
+  y              : exp(m + ε), ε ~ N(0, noise_std²)  — positive float
