@@ -1,0 +1,64 @@
+
+River Corridor Simulation
+  task=regression, seed=42
+  n_train=500, n_test=500
+  River: ([0.   0.35]) → ([1.   0.65])
+  Corridor: D=0.18, alpha=0.3, A=1.5
+  F: 1.5x₁ + x₂² + 3·1{x₃>0} + x₄·x₅
+  Noise covariates: x6, x7, x8
+  log-normal noise: noise_std=0.5
+  F calibration: C1=2.501708, C2=0.363717
+
+════════════════════════════════════════════════════
+  TRAIN  (n=500)
+────────────────────────────────────────────────────
+  F_effect   mean  : 0.0184
+  F_effect   std   : 0.9289
+  spatial    mean  : 0.3702
+  spatial    std   : 0.5541
+  spatial    max   : 1.4991
+  pct inside corridor : 0.3300
+  m          mean  : 0.3886
+  m          std   : 1.0985
+  y (log-normal) mean   : 3.1533
+  y (log-normal) median : 1.3814
+  log(y)         std    : 1.1979
+════════════════════════════════════════════════════
+════════════════════════════════════════════════════
+  TEST — interpolation  (n=500)
+────────────────────────────────────────────────────
+  F_effect   mean  : 0.0624
+  F_effect   std   : 0.9814
+  spatial    mean  : 0.3783
+  spatial    std   : 0.5548
+  spatial    max   : 1.4984
+  pct inside corridor : 0.3360
+  m          mean  : 0.4406
+  m          std   : 1.1210
+  y (log-normal) mean   : 3.4533
+  y (log-normal) median : 1.5134
+  log(y)         std    : 1.2015
+════════════════════════════════════════════════════
+════════════════════════════════════════════════════
+  TEST — extrapolation  (n=500)
+────────────────────────────────────────────────────
+  F_effect   mean  : -0.0544
+  F_effect   std   : 0.9414
+  spatial    mean  : 0.6223
+  spatial    std   : 0.6332
+  spatial    max   : 1.4990
+  pct inside corridor : 0.5120
+  m          mean  : 0.5679
+  m          std   : 1.1262
+  y (log-normal) mean   : 3.7013
+  y (log-normal) median : 1.7022
+  log(y)         std    : 1.2277
+════════════════════════════════════════════════════
+
+Column descriptions
+  s1, s2         : spatial coordinates
+  x1 … x8       : covariates (x1–x5 active, x6–x8 noise)
+  F_effect       : scaled covariate function, Var ≈ 1
+  spatial_effect : river corridor effect b(s), ≥ 0
+  m              : F_effect + spatial_effect
+  y              : exp(m + ε), ε ~ N(0, noise_std²)  — positive float
